@@ -6,7 +6,15 @@ const editorRoutes = require('./routes/editor');
 
 const app = express()
 app.use(cors())
-app.use(express.static('dist'))
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('markdown-editor/dist'))
+    const path = require('path')
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'markdown-editor', 'dist', 'index.html'))
+    })
+}
+
 
 // middleware
 app.use(express.json())
