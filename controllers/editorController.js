@@ -27,6 +27,10 @@ const singleMarkdownFile = async (req, res) => {
 // create a new markdown file
 const createMarkdown = async (req, res) => {
     const { createdAt, name, content } = req.body
+    console.log(content)
+    if (content === undefined) {
+        return res.status(400).json({ error: 'content missing' })
+    }
     try {
         const doc = await editor.create({ createdAt, name, content })
         res.status(200).json(doc)
