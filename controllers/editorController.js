@@ -18,7 +18,7 @@ const singleMarkdownFile = async (req, res) => {
     const MarkdownFile = await editor.findById(id)
 
     if (!MarkdownFile) {
-        return res.status(404).json({ error: "File not found" })
+        return res.status(404).json({ error: 'File not found' })
     }
 
     res.status(200).json(MarkdownFile)
@@ -49,7 +49,7 @@ const deleteMarkdownFile = async (req, res) => {
     const targetMarkdownFile = await editor.findByIdAndDelete({ _id: id })
 
     if (!targetMarkdownFile) {
-        return res.status(404).json({ error: "File not found" })
+        return res.status(404).json({ error: 'File not found' })
     }
 
     res.status(200).json(targetMarkdownFile)
@@ -67,7 +67,7 @@ const updateMarkdownFile = async (req, res) => {
     })
 
     if (!targetMarkdownFile) {
-        return res.status(404).json({ error: "File not found" })
+        return res.status(404).json({ error: 'File not found' })
     }
 
     res.status(200).json(targetMarkdownFile)

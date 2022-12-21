@@ -1,7 +1,7 @@
 const express = require('express')
 
 const router = express.Router()
-const editor = require('../models/editorModel')
+// const editor = require('../models/editorModel')
 const {
     createMarkdown,
     getAllMarkdownFiles,
