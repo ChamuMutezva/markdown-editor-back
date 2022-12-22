@@ -3,11 +3,11 @@ const express = require('express')
 const router = express.Router()
 // const editor = require('../models/editorModel')
 const {
-    createMarkdown,
-    getAllMarkdownFiles,
-    singleMarkdownFile,
-    deleteMarkdownFile,
-    updateMarkdownFile
+  createMarkdown,
+  getAllMarkdownFiles,
+  singleMarkdownFile,
+  deleteMarkdownFile,
+  updateMarkdownFile
 } = require('../controllers/editorController')
 
 
