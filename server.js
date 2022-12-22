@@ -1,8 +1,9 @@
-require('dotenv').config() 
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const editorRoutes = require('./routes/editor')
+const logger = require('./utils/logger')
 
 const app = express()
 app.use(cors())
@@ -29,9 +30,12 @@ mongoose.connect(process.env.MONGO_URL).
     console.log('connected to the database')
     app.listen(PORT)
     // eslint-disable-next-line no-undef
-    console.log(`listening on port ${process.env.PORT}!!`)
+    logger.info(`listening on port ${process.env.PORT}!!`)
   }).
   catch((error) => {
-    console.log(error)
+    logger.error(error)
+    //console.log(error)
   })
+
+app.use(express.static('dist'))
 
