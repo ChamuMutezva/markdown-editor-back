@@ -15,6 +15,12 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use(express.static('markdown-editor/dist'))
+app.get('*', (req, res) => {
+  // eslint-disable-next-line no-undef
+  res.sendFile(path.resolve(__dirname, 'markdown-editor', 'dist', 'index.html'))
+})
+
 // routes
 app.use('/api/editor', editorRoutes)
 
@@ -37,5 +43,5 @@ mongoose.connect(process.env.MONGO_URL).
     //console.log(error)
   })
 
-app.use(express.static('dist'))
+
 
