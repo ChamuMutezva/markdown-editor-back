@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const editorRoutes = require('./routes/editor')
 const logger = require('./utils/logger')
+const path = require('path')
+const methodOverride = require('method-override')
 
 const app = express()
 app.use(cors())
@@ -15,11 +17,18 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(express.static('markdown-editor/dist'))
-app.get('*', (req, res) => {
-  // eslint-disable-next-line no-undef
-  res.sendFile(path.resolve(__dirname, 'markdown-editor', 'dist', 'index.html'))
-})
+// app.use(express.static('markdown-editor/dist'))
+
+// eslint-disable-next-line no-undef
+app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.json({ limit: '50mb'}))
+app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+
+app.use(methodOverride('_do'))
+//app.get('*', (req, res) => {
+// eslint-disable-next-line no-undef
+// res.sendFile(path.resolve(__dirname, 'markdown-editor', 'dist', 'index.html'))
+//})
 
 // routes
 app.use('/api/editor', editorRoutes)
