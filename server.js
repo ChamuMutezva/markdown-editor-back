@@ -27,7 +27,10 @@ const PORT = process.env.PORT || 4000
 
 // connect to db
 // eslint-disable-next-line no-undef
-mongoose.connect(process.env.MONGO_URL).
+mongoose.connect(process.env.MONGO_URL,  {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).
   then(() => {
     // listen for request
     app.use(editorRoutes)
